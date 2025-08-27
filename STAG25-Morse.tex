@@ -1,0 +1,179 @@
+% ---------------------------------------------------------------------------
+% Author guideline and sample document for EG publication using LaTeX2e input
+% D.Fellner, v1.20, Jan 18, 2023
+
+\documentclass{egpubl}
+\usepackage{STAG2025}
+ 
+% --- for  Annual CONFERENCE
+% \ConferenceSubmission   % uncomment for Conference submission
+% \ConferencePaper        % uncomment for (final) Conference Paper
+% \STAR                   % uncomment for STAR contribution
+% \Tutorial               % uncomment for Tutorial contribution
+% \ShortPresentation      % uncomment for (final) Short Conference Presentation
+% \Areas                  % uncomment for Areas contribution
+% \Education              % uncomment for Education contribution
+% \Poster                 % uncomment for Poster contribution
+% \DC                     % uncomment for Doctoral Consortium
+%
+% --- for  CGF Journal
+% \JournalSubmission    % uncomment for submission to Computer Graphics Forum
+% \JournalPaper         % uncomment for final version of Journal Paper
+%
+% --- for  CGF Journal: special issue
+% \SpecialIssueSubmission    % uncomment for submission to , special issue
+% \SpecialIssuePaper         % uncomment for final version of Computer Graphics Forum, special issue
+%                          % EuroVis, SGP, Rendering, PG
+% --- for  EG Workshop Proceedings
+% \WsSubmission      % uncomment for submission to EG Workshop
+\WsPaper           % uncomment for final version of EG Workshop contribution
+% \WsSubmissionJoint % for joint events, for example ICAT-EGVE
+% \WsPaperJoint      % for joint events, for example ICAT-EGVE
+% \Expressive        % for SBIM, CAe, NPAR
+% \DigitalHeritagePaper
+% \PaperL2P          % for events EG only asks for License to Publish
+
+% --- for EuroVis 
+% for full papers use \SpecialIssuePaper
+% \STAREurovis   % for EuroVis additional material 
+% \EuroVisPoster % for EuroVis additional material 
+% \EuroVisShort  % for EuroVis additional material
+% \MedicalPrize  % uncomment for Medical Prize (Dirk Bartz) contribution, since 2021 part of EuroVis
+
+% Licences: for CGF Journal (EG conf. full papers and STARs, EuroVis conf. full papers and STARs, SR, SGP, PG)
+% please choose the correct license
+%\CGFStandardLicense
+%\CGFccby
+%\CGFccbync
+%\CGFccbyncnd
+
+% !! *please* don't change anything above
+% !! unless you REALLY know what you are doing
+% ------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{dfadobe}  
+
+%\usepackage{placeins}
+
+%\usepackage{cite}  % comment out for biblatex with backend=biber 
+% ---------------------------
+%\biberVersion
+\BibtexOrBiblatex
+%\usepackage[backend=biber,bibstyle=EG,citestyle=alphabetic,backref=true]{biblatex} 
+%\addbibresource{egbibsample.bib}
+% ---------------------------  
+\electronicVersion
+\PrintedOrElectronic
+
+% for including postscript figures
+% mind: package option 'draft' will replace PS figure by a filename within a frame
+\ifpdf \usepackage[pdftex]{graphicx} \pdfcompresslevel=9
+\else \usepackage[dvips]{graphicx} \fi
+
+\usepackage{egweblnk} 
+% end of prologue
+
+% ---------------------------------------------------------------------
+% EG author guidelines plus sample file for EG publication using LaTeX2e input
+% D.Fellner, v2.04, Dec 14, 2023
+
+\input{00_setup}
+
+\title[Short title]%
+      {Title TBD}
+ 
+\author{Paper XX}
+% \author[L. Rocca \& E. Puppo]
+%{\parbox{\textwidth}{\centering L.\ Rocca$^{1}$\orcid{0009-0003-3081-2130} 
+%and  E.\ Puppo$^{2}$\orcid{0000-0001-9780-5283}
+%       }
+%      \\
+%{\parbox{\textwidth}{\centering $^1$IGAG - CNR, Milan, Italy \hspace{0.5cm}
+%$^2$DIBRIS - University of Genoa, Italy }
+%}
+%}
+
+% end of prologue
+
+\begin{document}
+
+\teaser{
+  \setlength\tabcolsep{0pt} % make LaTeX figure out amount of intercol. whitespace
+  \noindent
+% .png  .png  .png  .png
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}cccc}  
+    \includegraphics[width=.24\textwidth]{fig/512x512}
+    & \includegraphics[width=.24\textwidth]{fig/512x512} 
+    & \includegraphics[width=.24\textwidth]{fig/512x512}  
+    & \includegraphics[width=.24\textwidth]{fig/512x512} \\
+    A & B & C  & D\\
+  \end{tabular*}
+
+  % \includegraphics[width=\linewidth]{eg_new}
+  \centering
+  \caption{Teaser here}
+  \label{fig:teaser}
+}
+
+\maketitle
+\begin{abstract}
+Abstract here
+
+%-------------------------------------------------------------------------
+%  ACM CCS 1998
+%  (see https://www.acm.org/publications/computing-classification-system/1998)
+% \begin{classification} % according to https://www.acm.org/publications/computing-classification-system/1998
+% \CCScat{Computer Graphics}{I.3.3}{Picture/Image Generation}{Line and curve generation}
+% \end{classification}
+%-------------------------------------------------------------------------
+%  ACM CCS 2012
+  %The tool at \url{http://dl.acm.org/ccs.cfm} can be used to generate
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10010147.10010371.10010396.10010402</concept_id>
+       <concept_desc>Computing methodologies~Shape analysis</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010147.10010371.10010382.10010383</concept_id>
+       <concept_desc>Computing methodologies~Image processing</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+   % <concept>
+   %     <concept_id>10010147.10010371.10010396.10010397</concept_id>
+   %     <concept_desc>Computing methodologies~Mesh models</concept_desc>
+   %     <concept_significance>300</concept_significance>
+   %     </concept>
+   <concept>
+       <concept_id>10003752.10010061.10010063</concept_id>
+       <concept_desc>Theory of computation~Computational geometry</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Shape analysis}
+\ccsdesc[300]{Computing methodologies~Image processing}
+% \ccsdesc[300]{Computing methodologies~Mesh models}
+\ccsdesc[300]{Theory of computation~Computational geometry}
+\printccsdesc
+\end{abstract}
+
+%% keywords:
+% morse-smale complexes
+% morphological data analysis
+
+%\input{01_introduction}
+%\input{02_related}
+%\input{02_basics}
+%\input{03_classify}
+%\input{04_method}
+%\input{05_results}
+%\input{06_discussion}
+
+\bibliographystyle{eg-alpha-doi} 
+\bibliography{references}       
+
+\end{document}
+

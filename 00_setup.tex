@@ -1,0 +1,242 @@
+\usepackage[ruled, vlined]{algorithm2e} % For algorithms
+\LinesNumbered
+\newcommand\mycommfont[1]{{#1}}
+\SetCommentSty{mycommfont}
+\renewcommand{\algorithmcfname}{Algorithm}
+
+
+\usepackage{paralist}
+\usepackage{wrapfig}
+\usepackage{amsfonts}
+
+\usepackage{dblfloatfix}
+\usepackage{booktabs}
+\newcommand{\colrule}{\midrule}
+\usepackage[percent]{overpic}
+
+\usepackage[normalem]{ulem}
+
+\newcommand\N{{\mathbb N}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\R{{\mathbb R}}
+%\newcommand\C{{\mathbb C}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\M{{\mathcal M}}
+\newcommand\C{{\mathcal C}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+
+\newcommand{\inprod}[2]{{\langle 
+  #1 \hspace{0.08cm}, #2 \rangle
+  }}
+%\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{rem}{Remark}[section]
+
+
+\usepackage{xspace}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{multirow, bigdelim}
+% \usetikzlibrary{shapes,decorations.markings,shapes.geometric,positioning,arrows,fadings}
+% \usepackage{colortbl}
+
+%%%%% For sectioning:
+\newcommand{\parasection} [1] {\textsf{\textbf{#1}.}}
+\newcommand{\bs}[1] {\textbf{\textsf{#1}}}
+
+%%%%% For comments:
+\newcommand{\oldversion } [1] {}
+\newcommand{\ignorethis } [1] {}
+\newcommand{\revised} [1] {\textcolor{blue}{ #1}}
+%\newcommand{\revised} [1] {#1}
+\newcommand{\note       } [1] {\textcolor{red}{\textbf{Note:} {\slshape #1}}}
+\newcommand{\smallnote  } [1] {{\small \{#1\}}}
+\newcommand{\bignote    } [1] {\begin{quote} \textbf{Note:\ }
+                               \slshape #1 \end{quote}}
+\newcommand{\urgent } [1] {\textcolor{red}{\textbf{Urgent:}{#1}}}
+\newcommand{\issues } [1] {\textcolor{blue}{\textbf{Issue:}{#1}}}
+\newcommand{\missing} [1] {\textcolor{green}{\textbf{Missing:}{#1}}}
+
+\newcommand{\gigi} [1] {\textcolor{orange}{\textbf{gg:} {\slshape #1}}}
+\newcommand{\enrico } [1] {\textcolor{red}{\textbf{ep:} {\slshape #1}}}
+\newcommand{\ciccio } [1] {\textcolor{magenta}{\textbf{cc:} {\slshape #1}}}
+
+\newcommand{\fixme  } [1] {\textcolor{red}{\textbf{#1}}}
+\newcommand{\fillit } [1] {\textcolor{cyan}{\textbf{fil:} {\slshape #1}}}
+\newcommand{\maybe  } [1] {\textcolor{gray}{\textbf{maybe:} {#1}}}
+
+
+%%%%% For referencing things:
+\newcommand{\chapnum    } [1] {\ref{#1}}
+\newcommand{\appnum     } [1] {\ref{#1}}
+\newcommand{\sectnum    } [1] {\ref{#1}}
+\newcommand{\tblnum     } [1] {\ref{#1}}
+\newcommand{\fignum     } [1] {\ref{#1}}
+\newcommand{\algnum     } [1] {\ref{#1}}
+%\newcommand{\eqnnum     } [1] {\mbox{(\ref{#1})}}
+\newcommand{\eqnnum     } [1] {\ref{#1}}
+\newcommand{\chap       } [1] {Chapter~\chapnum{#1}}
+\newcommand{\chaps      } [1] {Chapters~\chapnum{#1}}
+\newcommand{\app        } [1] {Appendix~\appnum{#1}}
+\newcommand{\apps       } [1] {Appendices~\appnum{#1}}
+\newcommand{\sect       } [1] {Sec.~\sectnum{#1}}
+\newcommand{\sects      } [1] {Sections~\sectnum{#1}}
+\newcommand{\tbl        } [1] {Tab.~\tblnum{#1}}
+\newcommand{\tbls       } [1] {Tables~\tblnum{#1}}
+\newcommand{\fig        } [1] {Fig.~\fignum{#1}}
+%\newcommand{\figure     } [1] {Figure~\fignum{#1}}
+\newcommand{\figs       } [1] {Figures~\fignum{#1}}
+\newcommand{\alg 		} [1] {Alg.~\algnum{#1}}
+\newcommand{\eqn        } [1] {Equation~\eqnnum{#1}}
+\newcommand{\eqns       } [1] {Equations~\eqnnum{#1}}
+
+%%%%% For conditionally referencing things
+\newcommand{\cfignum}[2]{\IfRefUndefinedExpandable{#1}{#2}{\fignum{#1}}}
+
+
+%%%%% Latin:
+%% \newcommand{\etal       }     {\textit{et~al.}} old; not like ACM style
+\newcommand{\etal       }     {{et~al.}}
+\newcommand{\apriori    }     {\textit{a~priori}}
+\newcommand{\aposteriori}     {\textit{a~posteriori}}
+\newcommand{\perse      }     {\textit{per~se}}
+\newcommand{\cf         }     {\textit{cf.}}
+\newcommand{\eg         }     {{e.g.,}}
+\newcommand{\Eg         }     {{E.g.,}}
+\newcommand{\ie         }     {{i.e.,}}
+\newcommand{\Ie         }     {{I.e.,}}
+
+%%%%% Math symbols:
+\newcommand{\Identity   }     {\mat{I}}
+\newcommand{\Zero       }     {\mathbf{0}}
+\newcommand{\Reals      }     {{\textrm{I\kern-0.18em R}}}
+\newcommand{\isdefined  }     {\mbox{\hspace{0.5ex}:=\hspace{0.5ex}}}
+%\newcommand{\implies    }     {\Longrightarrow}
+\newcommand{\texthalf   }     {\ensuremath{\textstyle\frac{1}{2}}}
+\newcommand{\half       }     {\ensuremath{\frac{1}{2}}}
+\newcommand{\third      }     {\ensuremath{\frac{1}{3}}}
+\newcommand{\fourth      }    {\ensuremath{\frac{1}{4}}}
+
+%%%%% Math modifiers:
+%\renewcommand{\vec      } [1] {{\text{\boldmath $\mathbit{#1}$}}}
+\renewcommand{\vec      } [1] {\mathbf{#1}}
+\newcommand{\mat        } [1] {{\text{\boldmath $\mathbit{#1}$}}}
+\newcommand{\Approx     } [1] {\widetilde{#1}}
+\newcommand{\change     } [1] {\mbox{{\footnotesize $\Delta$} \kern-3pt}#1}
+
+%%%%% Math functions:
+\newcommand{\Order      } [1] {O(#1)}
+\newcommand{\set        } [1] {{\lbrace #1 \rbrace}}
+\newcommand{\floor      } [1] {{\lfloor #1 \rfloor}}
+\newcommand{\ceil       } [1] {{\lceil  #1 \rceil }}
+\newcommand{\inverse    } [1] {{#1}^{-1}}
+\newcommand{\transpose  } [1] {{#1}^\mathrm{T}}
+\newcommand{\invtransp  } [1] {{#1}^{-\mathrm{T}}}
+
+
+%%%%% Math functions with small (fixed) and large (expandable) forms:
+\newcommand{\abs        } [1] {{| #1 |}}
+\newcommand{\Abs        } [1] {{\left| #1 \right|}}
+\newcommand{\norm       } [1] {{\| #1 \|}}
+\newcommand{\Norm       } [1] {{\left\| #1 \right\|}}
+\newcommand{\pnorm      } [2] {\norm{#1}_{#2}}
+\newcommand{\Pnorm      } [2] {\Norm{#1}_{#2}}
+\newcommand{\inner      } [2] {{\langle {#1} \, | \, {#2} \rangle}}
+\newcommand{\Inner      } [2] {{\left\langle \begin{array}{@{}c|c@{}}
+                               \displaystyle {#1} & \displaystyle {#2}
+                               \end{array} \right\rangle}}
+%\newcommand{\argmin     } [1] {{\underset{#1}{\operatorname{argmin}}}}
+
+
+\newcommand{\manif		} {\mathcal M}
+\newcommand{\mesh		} [1] {\ensuremath{\textit{M}^{#1}}}
+\newcommand{\meshm		} [1] {\ensuremath{\textit{M\hspace{0.01in}}'^{#1}}}
+%\newcommand{\ops		} [1] {\ensuremath{\textit{ops}_{#1}}}
+%\newcommand{\graph		} [1] {\ensuremath{\textit{graph}_{#1}}}
+\newcommand{\meshtopo   }     {\textcolor{red}{topology}}
+\newcommand{\med        }     {\emph{mesh edit distance}}
+%\newcommand{\VERT       }     {\textsc{vertex}}
+%\newcommand{\FACE       }     {\textsc{face}}
+
+\newcommand{\opc        } [2] {{\ensuremath{#1 \leftrightarrow #2}}}
+\newcommand{\opctight   } [2] {{\ensuremath{#1\hspace{-2pt}\rightarrow{}\hspace{-2pt}#2}}}
+%\newcommand{\opa        } [1] {{\ensuremath{\epsilon \rightarrow #1}}}
+%\newcommand{\opd        } [1] {{\ensuremath{#1 \rightarrow \epsilon}}}
+%\newcommand{\opn        }     {\ensuremath{\epsilon \rightarrow \epsilon}}
+
+\newcommand{\extalg     }     {Iterative-Greedy}
+
+
+%\newcommand{\figlbl     } [1] {{\textbf{\textsf{#1}}}}
+\newcommand{\figlbl     } [1] {{{\textsf{#1}}}}
+
+
+\newcommand{\addinsetbox}[3]{\makebox[0pt]{\hspace{-#1}\raisebox{#2}{\fbox{\includegraphics[width=#3]{figures/blank.png}}}}}
+\newcommand{\vhtext}[2]{\begin{sideways}\parbox{#1}{\centering#2}\end{sideways}}
+\newcommand{\vhtextr}[2]{\begin{turn}{270}\parbox{#1}{\centering#2}\end{turn}}
+
+% a b c d e
+% f g h i j
+% k l m n o
+\newcommand{\includemesh}[2]{\includegraphics[width=#1]{figures/#2}}
+
+\newcommand{\includemesha}[2]{\includegraphics[width=#1,trim=   0px  720px 1536px   0px,clip=true]{figures/#2}}
+\newcommand{\includemeshb}[2]{\includegraphics[width=#1,trim= 384px  720px 1152px   0px,clip=true]{figures/#2}}
+\newcommand{\includemeshc}[2]{\includegraphics[width=#1,trim= 768px  720px  768px   0px,clip=true]{figures/#2}}
+\newcommand{\includemeshd}[2]{\includegraphics[width=#1,trim=1152px  720px  384px   0px,clip=true]{figures/#2}}
+\newcommand{\includemeshe}[2]{\includegraphics[width=#1,trim=1536px  720px    0px   0px,clip=true]{figures/#2}}
+\newcommand{\includemeshf}[2]{\includegraphics[width=#1,trim=   0px  360px 1536px 360px,clip=true]{figures/#2}}
+\newcommand{\includemeshg}[2]{\includegraphics[width=#1,trim= 384px  360px 1152px 360px,clip=true]{figures/#2}}
+\newcommand{\includemeshh}[2]{\includegraphics[width=#1,trim= 768px  360px  768px 360px,clip=true]{figures/#2}}
+\newcommand{\includemeshi}[2]{\includegraphics[width=#1,trim=1152px  360px  384px 360px,clip=true]{figures/#2}}
+\newcommand{\includemeshj}[2]{\includegraphics[width=#1,trim=1536px  360px    0px 360px,clip=true]{figures/#2}}
+\newcommand{\includemeshk}[2]{\includegraphics[width=#1,trim=   0px    0px 1536px 720px,clip=true]{figures/#2}}
+\newcommand{\includemeshl}[2]{\includegraphics[width=#1,trim= 384px    0px 1152px 720px,clip=true]{figures/#2}}
+\newcommand{\includemeshm}[2]{\includegraphics[width=#1,trim= 768px    0px  768px 720px,clip=true]{figures/#2}}
+\newcommand{\includemeshn}[2]{\includegraphics[width=#1,trim=1152px    0px  384px 720px,clip=true]{figures/#2}}
+\newcommand{\includemesho}[2]{\includegraphics[width=#1,trim=1536px    0px    0px 720px,clip=true]{figures/#2}}
+
+\newcommand{\includemeshat}[6]{\includegraphics[width=#1,trim=   0px+#2  720px+#3 1536px+#4   0px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshbt}[6]{\includegraphics[width=#1,trim= 384px+#2  720px+#3 1152px+#4   0px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshct}[6]{\includegraphics[width=#1,trim= 768px+#2  720px+#3  768px+#4   0px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshdt}[6]{\includegraphics[width=#1,trim=1152px+#2  720px+#3  384px+#4   0px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshet}[6]{\includegraphics[width=#1,trim=1536px+#2  720px+#3    0px+#4   0px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshft}[6]{\includegraphics[width=#1,trim=   0px+#2  360px+#3 1536px+#4 360px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshgt}[6]{\includegraphics[width=#1,trim= 384px+#2  360px+#3 1152px+#4 360px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshht}[6]{\includegraphics[width=#1,trim= 768px+#2  360px+#3  768px+#4 360px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshit}[6]{\includegraphics[width=#1,trim=1152px+#2  360px+#3  384px+#4 360px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshjt}[6]{\includegraphics[width=#1,trim=1536px+#2  360px+#3    0px+#4 360px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshkt}[6]{\includegraphics[width=#1,trim=   0px+#2    0px+#3 1536px+#4 720px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshlt}[6]{\includegraphics[width=#1,trim= 384px+#2    0px+#3 1152px+#4 720px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshmt}[6]{\includegraphics[width=#1,trim= 768px+#2    0px+#3  768px+#4 720px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshnt}[6]{\includegraphics[width=#1,trim=1152px+#2    0px+#3  384px+#4 720px+#5,clip=true]{figures/#6}}
+\newcommand{\includemeshot}[6]{\includegraphics[width=#1,trim=1536px+#2    0px+#3    0px+#4 720px+#5,clip=true]{figures/#6}}
+
+%%%%%% PAPER %%%%%%%%
+
+\newcommand{\AppName}{\emph{SceneGit}\xspace}
+
+
+\renewcommand{\topfraction}{0.9}    % max fraction of floats at top
+\setcounter{topnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\renewcommand{\textfraction}{0.07}  % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}   % require fuller float pages
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+%\DeclareMathOperator*{\avg}{avg}
+%\DeclareMathOperator*{\area}{area}
+%\DeclareMathOperator*{\mindist}{min-dist}
+
+\newcommand{\quarterpagewidth}{0.8in} %1.0
+\newcommand{\thirdpagewidth  }{1.8in} %2.0
+\newcommand{\halfpagewidth   }{2.8in} %3.0
+\newcommand{\fullpagewidth   }{5.8in} %6.0
