@@ -5,10 +5,11 @@
 Topological data analysis (TDA) finds application in many fields, such as computer graphics \cite{Weinkauf:2009}, scientific visualization \cite{Tierny:2017}, geographical information science \cite{Dey:2017,Rocca:2017fv,Xu:2020}, environmental science \cite{Valsangkar:2019}, genomics \cite{Rabadan_Blumberg_2019}, biomedicine \cite{SKAF2022}, fluid dynamics \cite{Gunther:2012,Sahner:2007}, material science \cite{Gyulassy:2007},  chemistry \cite{Olejniczak:2020}, just to mention a few. 
 A recent account of the main techniques in TDA can be found in \cite{Dey_Wang_2022}.
 
-The characterization of functions by their critical points is fundamental to many powerful TDA tools \cite{Dey_Wang_2022, Biasotti2008, Heine2016, ttk}. A prime example is the \emph{Morse-Smale complex} \cite{Smale63}, which captures the morphology of a function $f$ using a geometric graph. The nodes of this graph are the critical points of $f$, and its arcs are the \emph{separatrices} -- the integral lines connecting these critical points, representing ridges and valleys in functions of two variables.
+The characterization of functions by their critical points is fundamental to many powerful TDA tools \cite{Biasotti2008, Heine2016, ttk, Dey_Wang_2022}. A prime example is the \emph{Morse-Smale complex} \cite{Smale63}, which captures the morphology of a function $f$ using a geometric graph. The nodes of this graph are the critical points of $f$, and its arcs are the \emph{separatrices} -- the integral lines connecting these critical points.
+%, representing ridges and valleys in functions of two variables.
 However, a significant challenge arises with real-world, noisy data. Such datasets often contain a multitude of spurious critical points that have little relevance to the function's overall morphology. Consequently, a Morse-Smale complex constructed from the complete set of critical points is frequently so cluttered that it provides minimal or no meaningful insight.
 
-\emph{Persistent homology} \cite{Edelsbrunner:2002ve} is a well-established method for ranking the importance of critical points, allowing for the progressive simplification of the Morse-Smale complex \cite{Bremer:2004,Edelsbrunner:2003dn}. The method works by analyzing the sublevel sets of a function $f$ to track topological changes that occur at its critical points. This analysis produces a sequence of critical point pairs that are progressively annihilated during topological simplification. Each pair is ranked according to its \emph{persistence}, which corresponds to the difference in function values between the two points.
+\emph{Persistent homology} \cite{Frosini:1999,Edelsbrunner:2002ve} is a well-established method for ranking the importance of critical points, allowing for the progressive simplification of the Morse-Smale complex \cite{Edelsbrunner:2003dn,Danovaro:2003,Bremer:2004,IURICICH2017,DEY2018,Fugacci:2020,Song:2021}. The method works by analyzing the sublevel sets of a function $f$ to track topological changes that occur at its critical points. This analysis produces a sequence of critical point pairs that are progressively annihilated during topological simplification. Each pair is ranked according to its \emph{persistence}, which corresponds to the difference in function values between the two points.
 
 Broadly speaking, persistent homology operates on the \emph{amplitude} of the signal. 
 While this method is very stable to Gaussian noise, it is fragile to impulse noise, which consists of isolated outliers with large amplitudes \cite{reininghaus11}.
@@ -17,12 +18,12 @@ An alternative approach to ranking the importance of critical points involves co
 Originally developed for image processing and low-level computer vision tasks \cite{lindeberg94}, this method applies a diffusion process to the initial function $f$ to create a family of progressively smoother functions. 
 The deep structure of this scale-space encodes the morphological information of these functions across different scales. By tracking critical points through these scales, a ranked sequence of pairs is generated; while similar to persistent homology's output, this sequence is distinct.
 
-The key advantage of this method is that its analysis occurs in the \emph{frequency} domain, making it more robust to impulse noise \cite{Rocca23}. 
+The analysis performed by this method occurs in the \emph{frequency} domain, making it more robust to impulse noise \cite{Rocca23}. 
 However, a challenge arises because critical points drift across the domain as the function undergoes diffusion, which can make reliable tracking difficult \cite{reininghaus11}. 
 A continuous, piecewise-linear model of the scale-space can be used to reliably track critical points that vanish together \cite{Rocca:2013}. 
 In this case, the ranking of pairs is defined by their resistance to filtering, which is referred to as their \emph{life} within the scale-space.
 
-While both approaches seem effective in simplifying the morphology of a function, it is still not well understood under which conditions their classification of topological features by these two methods significantly differs.
+While both approaches seem effective in simplifying the morphology of a function, it is still not well understood under which conditions their classifications of topological features significantly differ.
 In this paper, we present an experimental study that applies both persistent homology and scale-space analysis to a variety of synthetic and real datasets. We use visualization techniques to highlight the specific characteristics and differences in the results obtained from each method.
 
 \enrico{Se viene fuori qualcosa di particolarmente significativo si può anticipare qui.}
