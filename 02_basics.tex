@@ -62,19 +62,20 @@ In general, the scale-space $F_f$ is obtained through a diffusion process starti
 If ${\mathcal M}$ is Euclidean, i.e., ${\mathcal M}\subset\mathbb{R}^d$, the scale-space can be obtained equivalently by convolving $f$ with Gaussian kernels of increasing variance. 
 
 A \emph{slice} of the scale-space for a given time $\bar{t}$ is the restriction $f_{\bar t}(\cdot)=F_f(\cdot,\bar t)$.
-Let $p$ be a critical point of $f_{\bar t}$.
-Tracking the critical points of slices for varying $\bar t$ provides a set of trajectories through space ${\mathcal M}t$, which constitute the \emph{deep structure} of the scale-space.
+Tracking the critical points of slices for varying $\bar t$ provides a set of trajectories through space ${\mathcal M}t$, which constitutes the \emph{deep structure} of the scale-space.
 Each critical point $p$ is created at a certain time $t^c_p\geq 0$ and follows one such trajectory, describing its displacement through the scales, until a time $t^a_p\leq t_{\max}$.  
-If $t^a_p<t_{\max}$, then the trajectory of ends at the same position of the trajectory of another critical point $q$, and we say that the pair $(p,q)$ is annihilated at $t^a_p=t^a_q$. 
 
+If $t^a_p<t_{\max}$, then the trajectory of $p$ ends together with the trajectory of another critical point $q$, and we say that the pair $(p,q)$ is annihilated at $t^a_{p,q}$. 
 If $t^c_p=0$, then $p$ is an \emph{original} critical point of the input function, otherwise it is called a \emph{newborn}. 
-Similarly, if $t^a_p=t_{\max}$, then $p$ vanishes at time $t^a_p$, annihilating with another critical point; otherwise, it is a \emph{survivor} at the largest scale.
+Similarly, if $t^a_p=t_{\max}$, then $p$ is a \emph{survivor} at the largest scale.
 For $t_{\max}$ large enough, only the absolute minimum and the absolute maximum of $f$ survive. 
 
 A creation or annihilation event always involves two critical points; in 2D, they are always a saddle and either a minimum or a maximum.
-Newborn points usually are referred to as topological noise, and either ignored or used to extend the life of original points.
-In the following, we will only consider pairs formed of original points, according to a method described in \cite{Rocca:2013}. 
+Newborn points are usually referred to as topological noise, and either ignored or used to extend the life of original points \cite{Rocca:2013}.
+In the following, we will only consider pairs formed of original points.
+The \emph{life} of a pair of original points $(p,q)$ that vanish together is the value $t^a_{p,q}$ of the time of their annihilation; the life of survivors is $t_{\max}$.
+ 
 See \cite{Florack:2000wg} for a more thorough formal treatment of this subject. 
 
-
+\enrico{Forse si potrebbe semplificare evitando di parlare dei newborn.}
 
