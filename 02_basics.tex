@@ -1,0 +1,82 @@
+% !TEX root = STAG25-Morse.tex
+
+
+\section{Background notions}
+\label{sec:basics}
+%\paragraph*{Morse-Smale theory.}
+Let ${\mathcal M}$ be a smooth manifold of dimension $d$. 
+A smooth function $f:{\mathcal M}\longrightarrow\mathbb{R}$ is said to be a Morse function if all its critical points are isolated; this is equivalent to say that its Riemannian Hessian does not vanish at critical points. 
+In the following, we will stick to $d=2$; the theory holds for higher dimensions too, but this is out of the scope of this work. 
+
+%Let $p\in {\mathcal M}$ be a minimum of $f$; we define the \emph{unstable submanifold} (a.k.a, \emph{basin}) of $p$ as the locus of points of ${\mathcal M}$ that lie on integral curves of $f$ emanating from $p$; for $d=2$, each such region is bounded by a set of \emph{separatrices} that are integral curves connecting maxima and saddles. The unstable manifolds form a partition of ${\mathcal M}$.
+%Similarly, the \emph{stable submanifold} (a.k.a, \emph{mountain}) of a maximum $q$ is the locus of points that lie on integral curves converging at $q$. 
+%The stable submanifolds form another partition of ${\mathcal M}$, and each of them is bounded by separatrices that connect minima to saddles.  
+%If the two partitions intersect transversally, then their overlay is called a Morse-Smale complex. 
+%Hereafter, we will assume $f$ satisfies this property.
+%In the bivariate case, the Morse-Smale complex is described by a planar graph, whose edges are the separatices that connect saddles to maxima and saddles to minima.
+%See \cite{matsumoto02} for a more thorough formal treatment of this subject. 
+
+\paragraph*{Persistent homology.}
+For any real number $a$, the sublevel set $S_a$ of function $f$ isdefined as the set of all points $p\in\mathcal M$ such that $f(p)\leq a$, i.e., $S_a=f^{-1}((-\infty,a])$. 
+As we increase the value of $a$, the sublevel sets grow monotonically, forming a nested sequence of spaces, called a \emph{filtration}.
+ Persistent homology analyzes the topological features of $f$ by tracking the changes in the topology of these sublevel sets as $a$ increases.
+ 
+ The topology of the sublevel set $S_a$ changes only when the value of $a$ passes through a critical value of the function $f$. 
+ In the case of d=2, these topological changes are linked to the three types of critical points: minima, saddles, and maxima.
+%The topological changes are characterized by the Betti numbers of the homology groups. 
+%The $k$-th Betti number, $\beta_k$, represents the number of $k$-dimensional "holes" or features in a space. 
+%Specifically, $\beta_0$ counts the number of connected components, $\beta_1$ counts the number of one-dimensional loops, and so on. 
+%As we sweep through the sublevel sets, a critical point will cause a specific change in the Betti numbers:
+%\begin{itemize}
+%\item At a minimum, a new connected component is "born" ($\beta_0$ increases by one unit).
+%\item At a saddle, a connected component merges with another, or a new loop is formed ($|beta_0$ decreases, or $\beta_1$ increases by one unit).
+%\item At a maximum, a loop is filled in, or a new void is created ($\beta_1$ decreases by one unit, or $\beta_2$ increases by one unit). 
+%If $\mathcal M$ is compact and connected, a void is created only when the highest value is reached.
+%\end{itemize}
+The central idea of persistent homology is to pair up these topological events. 
+A critical point of index $k$ (which is a saddle, or maximum in our 2D case) is said to pair with a critical point of index $k-1$ (a minimum, or a saddle, respectively). 
+The formation of these pairs is best understood by tracking the homology classes of the sublevel sets. 
+%A feature's existence is represented by a homology class.
+\begin{itemize}
+\item A minimum (index 0) corresponds to the birth of a connected component (a 0-dimensional homology class). As the sublevel set grows, this component may persist.
+\item A saddle (index 1) can either merge two previously distinct connected components, causing one to "die," or it can create a new loop, causing a new homology class to be "born".
+\item A maximum (index 2) always causes the death of a feature, such as a loop being filled in.
+\end{itemize}
+A persistence pair is therefore a pair of critical points $(p_b,p_d)$ where $p_b$ is a birth point and $p_d$ is a death point. 
+For example, a minimum $p_m$ gives birth to a connected component, which persists until a saddle point $p_s$ is reached that merges it with an older component, causing its "death." This forms a persistence pair $(p_m,p_s)$.  
+Similarly, a saddle $p_{s'}$  can give birth to a loop which persists until a maximum $p_M$ is reached, causing the loop to be filled and "die." 
+This forms the pair $(p_{s'},p_M)$.  
+The \emph{persistence} of a pair $(p_b,p_d)$ is defined by the difference between the function values at the death and birth points: $f(p_d)-f(p_b)$.
+A large persistence value indicates a robust feature, likely part of the underlying structure, while a small value suggests topological noise.
+ 
+ \enrico{Aggiungere una citazione per dettagli.}
+ 
+\paragraph*{Scale-space.}
+The \emph{linear scale-space} $F_f(p,t)$ of $f$ is defined as the solution of the \emph{heat equation} 
+\[\frac{\partial}{\partial t} F_f = \lambda \Delta F_f,\]
+with initial condition $F_f(p,0)=f(p)$, where $\Delta$ denotes the Laplace-Beltrami operator with respect to the space variable $p$, and $\lambda$ is a constant term tuning the speed of diffusion.
+So, the scale-space is defined on a three dimensional domain ${\mathcal M}t={\mathcal M}\times [0,t_{\max}]$, the first two dimensions referring to space. 
+We will use interchangeably the words \emph{scale} and \emph{time} referring to the third dimension.
+%, as time comes from physical interpretation of the heat equation. 
+In general, the scale-space $F_f$ is obtained through a diffusion process starting at $f$.
+If ${\mathcal M}$ is Euclidean, i.e., ${\mathcal M}\subset\mathbb{R}^2$, the scale-space can be obtained equivalently by convolving $f$ with Gaussian kernels of increasing variance. %, where variance is directly proportional to t.
+%While our results apply to any 2-manifold, for the sake of simplicity, hereafter we will assume that ${\mathcal M}$ is a rectangle in the real plane, w.l.o.g, ${\mathcal M}=[0,w]\times [0,h]$.
+
+A \emph{layer} of the scale-space for a given time $\bar{t}$ is the restriction $f_{\bar t}=F_f|_{t=\bar{t}}$.
+Let $p$ be a critical point of $f_{\bar t}$.
+There exist a maximal smooth \emph{trajectory} $\gamma_p  : [t^c_p,t^a_p] \longrightarrow {\mathcal M}t$, with $\bar{t}\in[t^c_p,t^a_p]$, such that $\gamma_p(\bar{t})=(p,\bar{t})$ and for all other values $\gamma_p(t)$ is a critical point of $f_t$ of the same type of $p$.
+Trajectory $\gamma_p$ describes the evolution of critical point $p$ through the scales; with abuse of notation, when the scale is clear we will refer to $p$ and $\gamma_p$ interchangeably. 
+The values $t^c_p$ and $t^a_p$ are called the times of \emph{creation} and \emph{annihilation} of critical point $p$, respectively.
+If $t^c_p=0$, then $p$ is an \emph{original} critical point of the input function, otherwise it is called a \emph{newborn}. 
+Similarly, if $t^a_p<t_{\max}$, then $p$ vanishes at time $t^a_p$, annihilating with another critical point; otherwise, it is a \emph{survivor} at the largest scale.
+A creation or annihilation of (pairs of) critical points is called a \emph{catastrophic event}.
+Each catastrophic event always involves a saddle and either a minimum or a maximum.
+%
+%All layers of $F_f$ are Morse functions, except at times of catastrophic events, where points corresponding to collapsing pairs are non-Morse points.
+If we consider the Morse-Smale complexes for all layers of $F_f$, we find that also separatrices sweep surfaces through the scales;
+and each separatrix will collapse and/or originate at catastrophic events involving its endpoints. 
+This evolution of the morphological structure of $f$ through the scale is called the \emph{deep structure} of the scale-space.
+See, e.g., \cite{Florack:2000wg} for a more thorough formal treatment of this subject. 
+
+
+
