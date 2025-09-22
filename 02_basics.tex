@@ -44,39 +44,37 @@ The formation of these pairs is best understood by tracking the homology classes
 \end{itemize}
 A persistence pair is therefore a pair of critical points $(p_b,p_d)$ where $p_b$ is a birth point and $p_d$ is a death point. 
 For example, a minimum $p_m$ gives birth to a connected component, which persists until a saddle point $p_s$ is reached that merges it with an older component, causing its "death." This forms a persistence pair $(p_m,p_s)$.  
-Similarly, a saddle $p_{s'}$  can give birth to a loop which persists until a maximum $p_M$ is reached, causing the loop to be filled and "die." 
+Similarly, a saddle $p_{s'}$  can give birth to a loop which persists until a maximum $p_M$ is reached, causing the loop to be filled and "die". 
 This forms the pair $(p_{s'},p_M)$.  
+
 The \emph{persistence} of a pair $(p_b,p_d)$ is defined by the difference between the function values at the death and birth points: $f(p_d)-f(p_b)$.
 A large persistence value indicates a robust feature, likely part of the underlying structure, while a small value suggests topological noise.
- 
- \enrico{Aggiungere una citazione per dettagli.}
+See \cite{Edelsbrunner:2010} for a more thorough formal treatment of this subject. 
+
  
 \paragraph*{Scale-space.}
 The \emph{linear scale-space} $F_f(p,t)$ of $f$ is defined as the solution of the \emph{heat equation} 
 \[\frac{\partial}{\partial t} F_f = \lambda \Delta F_f,\]
 with initial condition $F_f(p,0)=f(p)$, where $\Delta$ denotes the Laplace-Beltrami operator with respect to the space variable $p$, and $\lambda$ is a constant term tuning the speed of diffusion.
-So, the scale-space is defined on a three dimensional domain ${\mathcal M}t={\mathcal M}\times [0,t_{\max}]$, the first two dimensions referring to space. 
-We will use interchangeably the words \emph{scale} and \emph{time} referring to the third dimension.
-%, as time comes from physical interpretation of the heat equation. 
+So, the scale-space is defined on a $(d+1)$-dimensional domain ${\mathcal M}t={\mathcal M}\times [0,t_{\max}]$, the first $d$ dimensions referring to space. 
+The last dimension is conventionally called \emph{scale} or \emph{time}.
 In general, the scale-space $F_f$ is obtained through a diffusion process starting at $f$.
-If ${\mathcal M}$ is Euclidean, i.e., ${\mathcal M}\subset\mathbb{R}^2$, the scale-space can be obtained equivalently by convolving $f$ with Gaussian kernels of increasing variance. %, where variance is directly proportional to t.
-%While our results apply to any 2-manifold, for the sake of simplicity, hereafter we will assume that ${\mathcal M}$ is a rectangle in the real plane, w.l.o.g, ${\mathcal M}=[0,w]\times [0,h]$.
+If ${\mathcal M}$ is Euclidean, i.e., ${\mathcal M}\subset\mathbb{R}^d$, the scale-space can be obtained equivalently by convolving $f$ with Gaussian kernels of increasing variance. 
 
-A \emph{layer} of the scale-space for a given time $\bar{t}$ is the restriction $f_{\bar t}=F_f|_{t=\bar{t}}$.
+A \emph{slice} of the scale-space for a given time $\bar{t}$ is the restriction $f_{\bar t}(\cdot)=F_f(\cdot,\bar t)$.
 Let $p$ be a critical point of $f_{\bar t}$.
-There exist a maximal smooth \emph{trajectory} $\gamma_p  : [t^c_p,t^a_p] \longrightarrow {\mathcal M}t$, with $\bar{t}\in[t^c_p,t^a_p]$, such that $\gamma_p(\bar{t})=(p,\bar{t})$ and for all other values $\gamma_p(t)$ is a critical point of $f_t$ of the same type of $p$.
-Trajectory $\gamma_p$ describes the evolution of critical point $p$ through the scales; with abuse of notation, when the scale is clear we will refer to $p$ and $\gamma_p$ interchangeably. 
-The values $t^c_p$ and $t^a_p$ are called the times of \emph{creation} and \emph{annihilation} of critical point $p$, respectively.
+Tracking the critical points of slices for varying $\bar t$ provides a set of trajectories through space ${\mathcal M}t$, which constitute the \emph{deep structure} of the scale-space.
+Each critical point $p$ is created at a certain time $t^c_p\geq 0$ and follows one such trajectory, describing its displacement through the scales, until a time $t^a_p\leq t_{\max}$.  
+If $t^a_p<t_{\max}$, then the trajectory of ends at the same position of the trajectory of another critical point $q$, and we say that the pair $(p,q)$ is annihilated at $t^a_p=t^a_q$. 
+
 If $t^c_p=0$, then $p$ is an \emph{original} critical point of the input function, otherwise it is called a \emph{newborn}. 
-Similarly, if $t^a_p<t_{\max}$, then $p$ vanishes at time $t^a_p$, annihilating with another critical point; otherwise, it is a \emph{survivor} at the largest scale.
-A creation or annihilation of (pairs of) critical points is called a \emph{catastrophic event}.
-Each catastrophic event always involves a saddle and either a minimum or a maximum.
-%
-%All layers of $F_f$ are Morse functions, except at times of catastrophic events, where points corresponding to collapsing pairs are non-Morse points.
-If we consider the Morse-Smale complexes for all layers of $F_f$, we find that also separatrices sweep surfaces through the scales;
-and each separatrix will collapse and/or originate at catastrophic events involving its endpoints. 
-This evolution of the morphological structure of $f$ through the scale is called the \emph{deep structure} of the scale-space.
-See, e.g., \cite{Florack:2000wg} for a more thorough formal treatment of this subject. 
+Similarly, if $t^a_p=t_{\max}$, then $p$ vanishes at time $t^a_p$, annihilating with another critical point; otherwise, it is a \emph{survivor} at the largest scale.
+For $t_{\max}$ large enough, only the absolute minimum and the absolute maximum of $f$ survive. 
+
+A creation or annihilation event always involves two critical points; in 2D, they are always a saddle and either a minimum or a maximum.
+Newborn points usually are referred to as topological noise, and either ignored or used to extend the life of original points.
+In the following, we will only consider pairs formed of original points, according to a method described in \cite{Rocca:2013}. 
+See \cite{Florack:2000wg} for a more thorough formal treatment of this subject. 
 
 
 
