@@ -65,15 +65,16 @@ A \emph{slice} of the scale-space for a given time $\bar{t}$ is the restriction 
 Tracking the critical points of slices for varying $\bar t$ provides a set of trajectories through space ${\mathcal M}t$, which constitutes the \emph{deep structure} of the scale-space.
 Each critical point $p$ is created at a certain time $t^c_p\geq 0$ and follows one such trajectory, describing its displacement through the scales, until a time $t^a_p\leq t_{\max}$.  
 
-If $t^a_p<t_{\max}$, then the trajectory of $p$ ends together with the trajectory of another critical point $q$, and we say that the pair $(p,q)$ is annihilated at $t^a_{p,q}$. 
+For $t^a_p<t_{\max}$, the trajectory of $p$ ends together with the trajectory of another critical point $q$, and we say that the pair $(p,q)$ is \emph{annihilated} at $t^a_{p,q}$. 
 If $t^c_p=0$, then $p$ is an \emph{original} critical point of the input function, otherwise it is called a \emph{newborn}. 
 Similarly, if $t^a_p=t_{\max}$, then $p$ is a \emph{survivor} at the largest scale.
-For $t_{\max}$ large enough, only the absolute minimum and the absolute maximum of $f$ survive. 
+For $t_{\max}$ large enough, only one minimum and one maximum of $f$ survive;
+in the limit,  $F_f(\cdot,+\infty)$ would become constant. 
 
-A creation or annihilation event always involves two critical points; in 2D, they are always a saddle and either a minimum or a maximum.
+A creation or annihilation event always involves two critical points; in 2D, a pair consists of either a minimum and a saddle, or  a saddle and a maximum.
 Newborn points are usually referred to as topological noise, and either ignored or used to extend the life of original points \cite{Rocca:2013}.
-In the following, we will only consider pairs formed of original points.
-The \emph{life} of a pair of original points $(p,q)$ that vanish together is the value $t^a_{p,q}$ of the time of their annihilation; the life of survivors is $t_{\max}$.
+In the following, we will only consider pairs consisting of original points.
+The \emph{life} of a pair  $(p,q)$ that vanish together is the value $t^a_{p,q}$ of the time of their annihilation; the life of survivors is $t_{\max}$.
  
 See \cite{Florack:2000wg} for a more thorough formal treatment of this subject. 
 
