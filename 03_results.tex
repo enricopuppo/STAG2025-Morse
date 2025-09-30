@@ -1,0 +1,140 @@
+ %!TEX root = STAG25-Morse.tex
+
+
+\section{Experimental results}
+\label{sec:results}
+
+We consider a number of synthetic and real datasets, and we analyze them by using both homological persistence and scale-space.
+We develop visualization idioms to illustrate the results obtained with the two methods and to highlight their differences.
+Based on this analysis, we discuss the qualitative properties of features that are highlighted by the two methods. 
+
+\subsection{Setup}
+\label{sub:setup}
+
+We consider 2D datasets encoded as regular grids of $R\times C$ values. 
+The domain spanned by each dataset is first triangulated by joining each grid point $(i,j)$ with points $(i+1,j)$, $(i+1,j+1)$ to form one triangle, and $(i,j+1)$, $(i+1,j+1)$ to form another triangle. 
+To avoid artifacts at the boundary, we extend our dataset with a dummy point, which is given a value larger than the maximum in the data range, and is connected with triangles to all boundary edges of the dataset, thus obtaining a mesh triangle mesh with the topology of a sphere, and a piecewise-linear function defined by the values associated with its vertices. 
+
+The piecewise-linear function is processed with The Topology Toolkit \cite{ttk} to compute its persistent homology, and with the method described in \cite{Rocca:2013} to compute its scale-space. 
+Both programs return a list of persistence pairs; for each pair:
+\begin{itemize}
+\item the position on the domain of the two critical points forming the pair: these are the points that give birth and kill a homological component in the case of persistent homology, or that annihilate together in the scale-space;
+\item the types of the two critical points (either minimum--saddle, or saddle--maximum);
+\item the values of the field at such two points;
+\item the persistence or life of such a pair, in the case of persistent homology or scale-space, respectively. 
+\end{itemize}
+
+From these sequences, we produce several plots and diagrams, as described in the following.
+
+\subsection{Datasets}
+\label{sub:data}
+
+ TABELLA DA RIFARE 
+
+\begin{table}
+\centering
+\resizebox{\columnwidth}{!}{
+  \begin{tabular}{lccrcc}
+    \toprule
+	\multicolumn{1}{c}{\textbf{Name}} &  \multicolumn{1}{c}{\textbf{Grid size}} &  \multicolumn{1}{c}{\textbf{(Vertices)}} &  
+	\multicolumn{1}{c}{\textbf{Critical points}} & \multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Noise}}\\ 
+
+    \cmidrule(lr){1-1}
+    \cmidrule(lr){2-2}
+    \cmidrule(lr){3-3}
+    \cmidrule(lr){4-4}
+    \cmidrule(lr){5-5}
+    \cmidrule(lr){6-6}
+	GaussHills-1 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
+	GaussHills-2 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
+	GaussHills-3 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
+ 	Graian Alps & $1200 \times 900$ & (1080K)& xx& real & -- \\
+    \bottomrule
+  \end{tabular}
+}
+\caption{\label{tab:data} Statistics for the input datasets. 
+From the left: name and size of the dataset; range span; number of critical points; type synthetic/real; added noise.
+}
+\end{table}
+
+ FINE TABELLA 
+
+
+
+We consider the following synthetic and real datasets (see Table \ref{tab:data} for details):
+\begin{itemize}
+\item LIST TODO
+\end{itemize}
+
+
+
+
+\subsection{Signature plots}
+\label{sub:signature}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.3\linewidth]{fig/512x512.png}
+    \includegraphics[width=0.3\linewidth]{fig/512x512.png}
+    \includegraphics[width=0.3\linewidth]{fig/512x512.png}
+    \caption{\label{fig:p-diagrams}
+Signature diagrams for homological persistence of the XXXX dataset. From the left: persistence diagram, aligned persistence diagram, persistence platforms.}
+ \end{figure*}
+
+In persistent homology, the result of data analysis is most often subsumed by a \emph{persistence diagram}. 
+It is a scatterplot, where each point represents a homological feature, corresponding to a pair of critical points that give birth and kill the feature in the filtration, respectively. 
+Both axes of the scatterplot represent the \emph{range} of the function, and a point with coordinates $(x,y)$ represents a feature that was born at level $x$ and died at level $y$. 
+The \emph{persistence} of the feature -- and its corresponding pair of critical points -- is the difference $y-x$. 
+Since we always have $x\leq y$, all points lie above or on the diagonal; they are often connected to the diagonal with vertical segments to enhance the perception of persistence. 
+See \ref{fig:p-diagrams} (left) for an example.
+
+The persistence diagram represents explicitly the three relevant quantities that characterize each feature: the levels of birth and death, and its persistence. 
+However, birth and death are not treated symmetrically, and persistence is not easy to read since the vertical bars rest on the diagonal.
+To make persistence more evident, and \emph{aligned persistence diagram} can be used, which is a sheared version of the persistence diagram that brings the diagonal to the $x$ axis. 
+In other words, each point $(x,y)$ represents a homological feature that was born at level $x$ and has a persistence $y$.
+In this case, the $y$ axis represents persistence rather than the range, and the level of death of the feature is given by $x+y$.
+See \ref{fig:p-diagrams} (center) for an example.
+Note that the aligned persistence diagram doesn't show the death level explicitly. 
+
+We introduce a third plot, the \emph{persistence platforms}, which has the same axes of the aligned persistence diagram (range vs persistence) and represents each feature with a orizontal segment from $(x_b,y)$ to $(x_d,y)$ where $x_b$ and $x_d$ are the levels of birth and death, respectively, and $y=x_d-x_b$ is the persistence.  
+See \ref{fig:p-diagrams} (right) for an example.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\columnwidth]{fig/512x512.png}
+    \includegraphics[width=0.49\columnwidth]{fig/512x512.png}
+    \caption{\label{fig:ss-diagrams}
+Signature diagrams for the scale space of the XXXX dataset. From the left: aligned scale-space diagram, scale-space platforms.}
+ \end{figure}
+
+In the case of scale-space, we cannot make an analogy of the persistence diagram, because the scale dimension is not homogeneous with the range. 
+However, we can easily define diagrams that are similar to the aligned persistence diagram and persistence platforms.
+In the \emph{aligned scale-space diagram}, the horizontal axis represents the function range (as in the aligned persistence diagram)  while the vertical axis represents scale (specifically, the standard deviation of the Gaussian filter). 
+Each pair is represented with a point $(x,y)$ where $x$ is the level of the lowest point in the pair, while $y$ is the scale at which the pair annihilates.
+Note that, in this case, the level of the highest point in the pair is not represented. 
+Likewise, the \emph{scale-space platforms} plot has the same axes as the aligned scale-space diagram and represents each pair with a horizontal segment, having its left and right endpoints at the levels of the two critical points, and its $y$ coordinate at the scale at which the pair annihilates. 
+See Figure \ref{fig:ss-diagram} for an example.
+
+In the following, we will disregard the classic persistence diagram, for which we have no comparison in the scale-space, and we will compare the two schemes by using the other four plots described above.
+
+\subsection{Maps}
+\label{sec:maps}
+Signatures convey no information on the distribution of critical points, which form pairs defining topological features, on the domain of the function.
+We complement them with maps that superimpose on the heatmap (greylevel) of the function the critical points, each represented with a bullet, colored according to its type (blue minimum, green saddle, and red maximum) and having a radius that is proportional to its persistence, or life in the scale-space, respectively. 
+
+\subsection{Comparison plots}
+\label{sub:comparison}
+Our primary purpose is to visualize how differently the two approaches characterize topological features. 
+All previous plots are well informative about each single analysis, but visual comparison of corresponding plots from the two methods requires some effort. 
+We provide two more plots, each combining the two methods within the same plot, to enhance their differences. 
+The \emph{comparison plot} shows one bullet per critical point of the functions. 
+The two axes are persistence vs scale, and each point has coordinates $(x,y)$  where $x$ is its persistence and $y$ is its life in the scale-space. 
+Note that, since the two methods may pair critical points differently, here we cannot represent pairs, but rather represent their constituent critical points, which are consistent for both methods.
+To homogenize the two scales, we rescale all values in the range $[0,1]$.
+\enrico{Aggiungere qui se facciamo gamma correction.} 
+The bullets that fall close to the diagonal are points are classified similarly by the two methods; the more they are off the diagonal, the more different the two classifications. 
+
+We pair this plot with a \emph{comparison map}, in which we represent each critical point, colored and scaled to show how off-diagonal it is. 
+We compute the difference $y-x$, which is twice the signed distance from the diagonal, and we use this value to obtain a color from a divergent scale and its absolute value to set the radius of the bullet. 
+
+
