@@ -29,26 +29,26 @@ From these sequences, we produce several plots and diagrams, as described in the
 \subsection{Datasets}
 \label{sub:data}
 
- TABELLA DA RIFARE 
 
 \begin{table}
 \centering
 \resizebox{\columnwidth}{!}{
-  \begin{tabular}{lccrcc}
+  \begin{tabular}{lccrc}
     \toprule
 	\multicolumn{1}{c}{\textbf{Name}} &  \multicolumn{1}{c}{\textbf{Grid size}} &  \multicolumn{1}{c}{\textbf{(Vertices)}} &  
-	\multicolumn{1}{c}{\textbf{Critical points}} & \multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Noise}}\\ 
-
+	\multicolumn{1}{c}{\textbf{Critical}} & \multicolumn{1}{c}{\textbf{Type}}\\ % & \multicolumn{1}{c}{\textbf{Noise}}\\ 
     \cmidrule(lr){1-1}
     \cmidrule(lr){2-2}
     \cmidrule(lr){3-3}
     \cmidrule(lr){4-4}
     \cmidrule(lr){5-5}
-    \cmidrule(lr){6-6}
-	GaussHills-1 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
-	GaussHills-2 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
-	GaussHills-3 & $400 \times 400$ & (160K)& xx& synthetic & -- \\
- 	Graian Alps & $1200 \times 900$ & (1080K)& xx& real & -- \\
+	GaussHills-1 & $400 \times 400$ & (160K)& 13& synthetic\\
+	GaussHills-2 & $400 \times 400$ & (160K)& xx& synthetic\\
+	GaussHills-3 & $400 \times 400$ & (160K)& xx& synthetic\\
+	Wave & XXXX & (XXXK) & xx & synthetic\\
+ 	Aletsch Glacier & $703 \times 697$ & (490K)& 5209& real\\
+ 	Cells & $1224 \times 904$ & (1100K)& 2961& real\\
+ 	Mantle & $360 \times 180$ & (65K)& 1533& real\\
     \bottomrule
   \end{tabular}
 }
@@ -57,7 +57,6 @@ From the left: name and size of the dataset; range span; number of critical poin
 }
 \end{table}
 
- FINE TABELLA 
 
 
 
@@ -66,13 +65,13 @@ We consider the following synthetic and real datasets (see Table \ref{tab:data} 
 \item The \textbf{GausHills} datasets are stochastic terrains obtained by summing randomly distributed and scaled Gaussians of the type
 \[A \mathrm{e}^{-\frac{(x-x_c)^2 + (y-y_c)^2}{2\sigma^2}}\]
 where the center of the Gaussian $(x_c,y_c)$, its amplitude $A$ and its standard deviation $\sigma$ are random sampled from a given domain and intervals.
-In \textbf{{GaussHills1}, just 6 Gaussians are sampled, the intervals used for $A$ and $\sigma$ are similar, and set so that the resulting function resembles a smooth landscape of mountains and pits. 
-Dataset \textbf{{GaussHills2} is obtained by summing to\textbf{{GaussHills1} a larger number of Gaussians, where the intervals used for $A$ and $\sigma$ are smaller to add details at higher frequency.
-Dataset \textbf{{GaussHills3} is obtained by adding more detail to \textbf{{GaussHills2} in a similar way.
+In \textbf{GaussHills1}, just 6 Gaussians are sampled, the intervals used for $A$ and $\sigma$ are similar, and set so that the resulting function resembles a smooth landscape of mountains and pits. 
+Dataset \textbf{GaussHills2} is obtained by summing to \textbf {GaussHills1} a larger number of Gaussians, where the intervals used for $A$ and $\sigma$ are smaller to add details at higher frequency.
+Dataset \textbf{GaussHills3} is obtained by adding more detail to \textbf{GaussHills2} in a similar way.
 The number of Gaussians added at each level is roughly the square of the number used at the previous level; the intervals for $A$ and $\sigma$ decrease about five times at each level. 
-\item\textbf{{Wave} is a synthetic dataset representing a sinusoidal signal: in the $x$ direction, the frequency of the signal is constant, while its amplitude decreases linearly with $x$; in the $y$ direction, the amplitude of the signal is constant, while its frequency increases linearly with $y^2$. 
-This dataset offers a wide yet controlled distribution of different amplitudes and frequencies. 
-We also include two noisy versions of this dataset: in \textbf{Wave_normal_noise}, we add normal noise with a standard deviation that is $X\%$ of the range spanned by the dataset; in \textbf{Wave_spike_noise}, we add spikes randomly distributed over the domain, and having an intensity comparable to the data range.  
+\item\textbf{Wave} is a synthetic dataset representing a sinusoidal signal: in the $x$ direction, the frequency of the signal is constant, while its amplitude decreases linearly with $x$; in the $y$ direction, the amplitude of the signal is constant, while its frequency increases linearly with $y^2$. 
+This dataset offers a wide yet controlled distribution of different amplitudes and frequencies. \enrico{Da rivedere secondo che wave usiamo}
+%We also include two noisy versions of this dataset: in \textbf{Wave_normal_noise}, we add normal noise with a standard deviation that is $X\%$ of the range spanned by the dataset; in \textbf{Wave_spike_noise}, we add spikes randomly distributed over the domain, and having an intensity comparable to the data range.  
 \item \textbf{Aletsch Glacier} is a section of the swisstopo DEM with a 25m horizontal resolution \cite{dhm25}, centered around Konkordiaplatz in the Aletsch glacier; it covers steep alpine areas full of dramatic drops and rises. 
 \item \textbf{Cells}  is an image from the Low-frame-rate cell tracking dataset \cite{LFCT} captured at 10× magnification, depicting MCF10a cells expressing the red fluorescent protein mRuby. It features a large, almost flat, background region affected by noise, containing a relatively small number of islands corresponding to cells, with different variations of signal within different cells.
  \item \textbf{Mantle}, is a slice of the Earth Mantle Convection dataset \cite{scivis2021}, representing the temperature within the midmantle of the Earth approximately 500 million years ago. This dataset features a relatively smooth variation of the signal, exhibiting a more even distribution of maxima and minima, compared to natural and synthetic terrains, where minima are less frequent than maxima.  
